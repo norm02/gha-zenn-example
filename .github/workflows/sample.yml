@@ -51,4 +51,4 @@ jobs:
 
       - name: Print loglevel
         id: print-loglevel
-        run: echo "${{needs.prepare-loglevel.outputs.selected-loglevel}}"
+        run: echo "This loglevel is ${{needs.prepare-loglevel.outputs.selected-loglevel}}"
