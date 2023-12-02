@@ -40,7 +40,7 @@ jobs:
           fi
 
     outputs:
-      set-loglevel: ${{ steps.SET-LOGLEVEL.outputs.selected-loglevel }}
+      selected-loglevel: ${{ steps.set-loglevel.outputs.selected-log }}
 
   print-loglevel:
     runs-on: ubuntu-latest
@@ -48,4 +48,4 @@ jobs:
     steps:
       - name: Print loglevel
         id: print-loglevel
-        run: echo "${{needs.prepare-loglevel.outputs.set-loglevel}}"
+        run: echo "${{ needs.prepare-loglevel.outputs.selected-loglevel }}"
