@@ -46,6 +46,9 @@ jobs:
     needs: prepare-loglevel
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Print loglevel
         id: print-loglevel
         run: echo "This loglevel is ${{ needs.prepare-loglevel.outputs.selected-loglevel }}"
