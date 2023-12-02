@@ -29,10 +29,10 @@ jobs:
           if [ "${{ inputs.loglevel }}" == "info" ]; then
             echo "info log is sending"
             echo "SET-LOGLEVEL=info" >> "$GITHUB_OUTPUT"
-            elif [ "${{ inputs.loglevel }}" == "warning" ]; then
+          elif [ "${{ inputs.loglevel }}" == "warning" ]; then
             echo "Warning"
             echo "SET-LOGLEVEL=warning" >> "$GITHUB_OUTPUT"
-            elif [ "${{ inputs.loglevel }}" == "debug" ]; then
+          elif [ "${{ inputs.loglevel }}" == "debug" ]; then
             echo "debug log is sending"
             echo "SET-LOGLEVEL=debug" >> "$GITHUB_OUTPUT"
           else 
