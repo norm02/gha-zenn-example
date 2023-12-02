@@ -28,19 +28,19 @@ jobs:
         run: |
           if [ "${{ inputs.loglevel }}" == "info" ]; then
             echo "Info log is sending"
-            echo "selected-loglevel=info" >> "$GITHUB_OUTPUT"
+            echo "SELECTED-LOGLEVEL=info" >> "$GITHUB_OUTPUT"
           elif [ "${{ inputs.loglevel }}" == "warning" ]; then
             echo "Warning log is sending!!"
-            echo "selected-loglevel=warning" >> "$GITHUB_OUTPUT"
+            echo "SELECTED-LOGLEVEL=warning" >> "$GITHUB_OUTPUT"
           elif [ "${{ inputs.loglevel }}" == "debug" ]; then
             echo "Debug log is sending"
-            echo "selected-loglevel=debug" >> "$GITHUB_OUTPUT"
+            echo "SELECTED-LOGLEVEL=debug" >> "$GITHUB_OUTPUT"
           else 
             echo "Unknown log is sending"
           fi
 
     outputs:
-      selected-loglevel: ${{ steps.set-loglevel.outputs.selected-log }}
+      selected-loglevel: ${{ steps.set-loglevel.outputs.SELECTED-LOGLEVEL }}
 
   print-loglevel:
     needs: prepare-loglevel
@@ -49,14 +49,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Info loglevel
-        if: ${{ needs.prepare-loglevel.outputs.selected-loglevel == 'info' }}
-        run: echo "This loglevel is info"
-
-      - name: Warning loglevel
-        if: ${{ needs.prepare-loglevel.outputs.selected-loglevel == 'warning' }}
-        run: echo "This loglevel is warning!!"
-
-      - name: Debug loglevel
-        if: ${{ needs.prepare-loglevel.outputs.selected-loglevel == 'debug' }}
-        run: echo "This loglevel is debug"
+      - name: Print loglevel
+        id: print-loglevel
+        run: echo "${{needs.prepare-loglevel.outputs.selected-loglevel}}"
