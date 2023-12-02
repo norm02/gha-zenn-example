@@ -28,13 +28,13 @@ jobs:
         run: |
           if [ "${{ inputs.loglevel }}" == "info" ]; then
             echo "info log is sending"
-            echo "SET-LOGLEVEL=info" >> "$GITHUB_OUTPUT"
+            echo "selected-loglevel=info" >> "$GITHUB_OUTPUT"
           elif [ "${{ inputs.loglevel }}" == "warning" ]; then
-            echo "Warning"
-            echo "SET-LOGLEVEL=warning" >> "$GITHUB_OUTPUT"
+            echo "Warning!!"
+            echo "selected-loglevel=warning" >> "$GITHUB_OUTPUT"
           elif [ "${{ inputs.loglevel }}" == "debug" ]; then
             echo "debug log is sending"
-            echo "SET-LOGLEVEL=debug" >> "$GITHUB_OUTPUT"
+            echo "selected-loglevel=debug" >> "$GITHUB_OUTPUT"
           else 
             echo "log is not found"
           fi
@@ -43,8 +43,8 @@ jobs:
       selected-loglevel: ${{ steps.set-loglevel.outputs.selected-log }}
 
   print-loglevel:
-    runs-on: ubuntu-latest
     needs: prepare-loglevel
+    runs-on: ubuntu-latest
     steps:
       - name: Print loglevel
         id: print-loglevel
